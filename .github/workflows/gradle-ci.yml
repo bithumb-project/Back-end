@@ -27,11 +27,6 @@ jobs:
         cd community
         chmod +x gradlew
       
-    - name: Test with community's Gradle
-      run: |
-        cd community
-        ./gradlew test
-      
     - name: Build with community's Gradle
       run: |
         cd community

@@ -24,15 +24,15 @@ jobs:
         
     - name: Grant execute permission for community's gradlew
       run: 
-      cd community
-      chmod +x gradlew
+        cd community
+        chmod +x gradlew
       
     - name: Test with community's Gradle
       run: 
-      cd community
-      ./gradlew test
+        cd community
+        ./gradlew test
       
     - name: Build with community's Gradle
       run:
-      cd community
-      ./gradlew build
+        cd community
+        ./gradlew build

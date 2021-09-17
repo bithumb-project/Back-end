@@ -22,14 +22,14 @@ jobs:
         distribution: 'adopt'
 
     
-    - name: Move community Directory
-      run: cd community
-
     - name: Grant execute permission for community's gradlew
+      run: cd community
       run: chmod +x gradlew
       
     - name: Test with community's Gradle
+      run: cd community
       run: ./gradlew test
       
     - name: Build with community's Gradle
+      run: cd community
       run: ./gradlew build

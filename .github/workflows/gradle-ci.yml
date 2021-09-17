@@ -21,18 +21,15 @@ jobs:
         java-version: '1.8'
         distribution: 'adopt'
 
-        
+    
+    - name: Move community Directory
+      run: cd community
+
     - name: Grant execute permission for community's gradlew
-      run: 
-        cd community
-        chmod +x gradlew
+      run: chmod +x gradlew
       
     - name: Test with community's Gradle
-      run: 
-        cd community
-        ./gradlew test
+      run: ./gradlew test
       
     - name: Build with community's Gradle
-      run:
-        cd community
-        ./gradlew build
+      run: ./gradlew build

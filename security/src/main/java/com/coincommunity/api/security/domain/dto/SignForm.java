@@ -24,6 +24,17 @@ public class SignForm {
     @NotNull(message = "닉네임을 입력해주세요!")
     private String nickname;
 
+    private SignForm(final String email, final String password, final String nickname) {
+        this.email = email;
+        this.password = password;
+        this.nickname = nickname;
+    }
+
+    public static SignForm of(final String email, final String password, final String nickname) {
+        return new SignForm(email, password, nickname);
+    }
+
+
     public SignForm encodePassword(final PasswordEncoder passwordEncoder) {
         this.password = passwordEncoder.encode(this.password);
         return this;

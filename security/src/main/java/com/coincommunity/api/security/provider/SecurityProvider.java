@@ -41,12 +41,12 @@ public class SecurityProvider implements AuthenticationProvider {
     private Key key;
 
     @PostConstruct
-    protected void init(){
+    protected void init() {
         this.key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretKey));
         log.info("secretKEy" + secretKey);
     }
 
-    public String createToken(String email, List<Role> roles){
+    public String createToken(String email, List<Role> roles) {
         log.info("createToken 들어옴------------------");
         Claims claims = Jwts.claims().setSubject(email);
         log.info("--------------------claims" + claims);
@@ -65,28 +65,28 @@ public class SecurityProvider implements AuthenticationProvider {
             .compact();
     }
 
-    public Authentication getAuthentication(String token){
+    public Authentication getAuthentication(String token) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(getUsername(token));
         return new UsernamePasswordAuthenticationToken(userDetails.getAuthorities(), "", userDetails.getAuthorities());
     }
 
-    public String getUsername(String token){
+    public String getUsername(String token) {
         return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody().getSubject();
     }
 
-    public String resolveToken(HttpServletRequest request){
+    public String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
-        if (bearerToken != null && bearerToken.startsWith("Bearer")){
+        if (bearerToken != null && bearerToken.startsWith("Bearer")) {
             return bearerToken.substring(7);
         }
         return null;
     }
 
-    public boolean validateToken(String token) throws Exception{
+    public boolean validateToken(String token) throws Exception {
         try {
             Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token);
             return true;
-        }catch (JwtException | IllegalArgumentException e){
+        } catch (JwtException | IllegalArgumentException e) {
             throw new Exception();
         }
     }

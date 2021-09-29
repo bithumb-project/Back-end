@@ -37,4 +37,5 @@ public class MemberController {
     public String test() {
         return "This page is authenticated";
     }
+
 }

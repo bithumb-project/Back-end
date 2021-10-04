@@ -39,4 +39,5 @@ public class SignForm {
         this.password = passwordEncoder.encode(this.password);
         return this;
     }
+
 }
